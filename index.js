@@ -204,18 +204,19 @@ Use the getAverageWordLength function below to do the following:
 
 
 // average = number of words /  number of elements
-function getAverageWordLength(arr){
-  let countSpaces = 0;
-
+function getAverageWordLength(arr) {
+  const myArr = [];
+  let totalNumWords = 0;
   for(let i = 0; i < arr.length; i++) {
-  	if(arr[i].includes(" ")) {
-      countSpaces++;
-  	}
+    myArr.push(arr[i].split(" ").length);
   }
-   return Math.round(countSpaces / arr.length);
+  for(let i = 0; i < myArr.length; i++) {
+    totalNumWords += myArr[i];
+  }
+  return Math.round(totalNumWords / arr.length);
 }
 
-console.log(getAverageWordLength('Stretch 1: ', originalFlavors));
+console.log('Stretch 1: ', getAverageWordLength(originalFlavors));
 
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪
@@ -310,14 +311,31 @@ const regionalFlavors = [
   "Caramel 'n' Cookies"
  ]
 
- function getRandomFlavors(arr1, arr2, arr3, arr4){
+ function getRandomFlavors(arr1, arr2, arr3, arr4) {
   let randomFlavors = [];
+  let random = 0;
   
   for(let i = 0; i < arr1.length; i++) {
-  	let random = Math.floor(Math.random() * arr1.length);
-    randomFlavors.push(arr1[random]);
+    if(randomFlavors.length < 8) {
+      random = Math.floor(Math.random() * arr1.length);
+      randomFlavors.push(arr1[random]);
+    }
+
+    if(randomFlavors.length < 16) {
+       random = Math.floor(Math.random() * arr2.length);
+       randomFlavors.push(arr2[random]);
+    }
+
+    if(randomFlavors.length < 24) {
+      random = Math.floor(Math.random() * arr3.length);
+      randomFlavors.push(arr3[random]);
+    }
+
+    if(randomFlavors.length < 31) {
+       random = Math.floor(Math.random() * arr4.length);
+       randomFlavors.push(arr4[random]);
+    }
   }
-  console.log(randomFlavors.length);
   return randomFlavors;
 }
 
